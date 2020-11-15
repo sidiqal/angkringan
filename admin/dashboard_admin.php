@@ -1,6 +1,6 @@
-<?php 
+<?php
 session_start();
-if(!isset($_SESSION['login'])){
+if (!isset($_SESSION['login'])) {
     header("Location: ../login.php");
     exit;
 }
@@ -8,11 +8,13 @@ if(!isset($_SESSION['login'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Admin Angkringan Mas Dimas</title>
 </head>
+
 <body>
     <h1>Dashboard Admin Angkringan Mas Dimas</h1>
     <a href="../action/create.php">Create</a><br><br>
@@ -22,11 +24,12 @@ if(!isset($_SESSION['login'])){
         <tr>
             <td>No</td>
             <td>Nama</td>
+            <td>Gambar</td>
             <td>Harga</td>
             <td>Stok</td>
             <td>Aksi</td>
         </tr>
-        <?php 
+        <?php
         include('../proses/config.php');
 
         $sql = "SELECT * FROM makanan";
@@ -35,11 +38,12 @@ if(!isset($_SESSION['login'])){
 
         $no = 1;
 
-        while($data = mysqli_fetch_array($query)){
-            ?>
+        while ($data = mysqli_fetch_array($query)) {
+        ?>
             <tr>
                 <td><?php echo $no; ?> </td>
                 <td><?php echo $data["nama_makanan"]; ?> </td>
+                <td><img src="../assets/img/<?php echo $data["gambar_makanan"]; ?>" alt="<?php echo $data["gambar_makanan"]; ?>" width="150px"></td>
                 <td><?php echo $data["harga_makanan"]; ?> </td>
                 <td><?php echo $data["stok_makanan"]; ?> </td>
                 <td>
@@ -47,7 +51,9 @@ if(!isset($_SESSION['login'])){
                     <a href="../action/delete.php?id=<?php echo $data["id"]; ?>">Delete</a>
                 </td>
             </tr>
-        <?php $no++; } ?>
+        <?php $no++;
+        } ?>
     </table>
 </body>
+
 </html>
