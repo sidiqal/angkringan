@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['login'])) {
-    header("Location: ../login.php");
+if ($_SESSION['level'] !== "admin" and $_SESSION['level'] !== "pegawai") {
+    header("Location: ../index.php");
     exit;
 }
 
@@ -48,7 +48,11 @@ if (!isset($_SESSION['login'])) {
                 <td><?php echo $data["stok_makanan"]; ?> </td>
                 <td>
                     <a href="../action/update.php?id=<?php echo $data["id"]; ?>">Update</a> |
-                    <a href="../action/delete.php?id=<?php echo $data["id"]; ?>">Delete</a>
+                    <?php
+                    if ($_SESSION['level'] == "admin") {
+                    ?>
+                        <a href="../action/delete.php?id=<?php echo $data["id"]; ?>">Delete</a>
+                    <?php } ?>
                 </td>
             </tr>
         <?php $no++;

@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['login'])) {
-    header("Location: ../login.php");
+if ($_SESSION['level'] !== "admin" and $_SESSION['level'] !== "pegawai") {
+    header("Location: ../index.php");
     exit;
 }
 
