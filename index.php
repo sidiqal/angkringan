@@ -36,8 +36,10 @@
                 <td><?php echo $data["harga_makanan"]; ?> </td>
                 <td><?php echo $data["stok_makanan"]; ?> </td>
             </tr>
-        <?php $no++;
-        } ?>
+        <?php
+            $no++;
+        }
+        ?>
     </table>
 </body>
 
